@@ -299,7 +299,7 @@
             {
                 "inbound": "tun-in",
                 "action": "resolve",
-                "strategy": "only_ipv4"
+                "strategy": "ipv4_only"
             },
             {
                 "inbound": "tun-in",
