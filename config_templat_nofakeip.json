@@ -30,10 +30,6 @@
                 "tag": "dns_resolver",
                 "address": "223.5.5.5",
                 "detour": "☄️ DIRECT"
-            },
-            {
-                "tag": "dns_fakeip",
-                "address": "fakeip"
             }
         ],
         "rules": [
@@ -68,11 +64,7 @@
             }
         ],
         "final": "dns_direct",
-        "independent_cache": true,
-        "fakeip": {
-            "enabled": true,
-            "inet4_range": "198.18.0.0/15"
-        }
+        "independent_cache": true
     },
     "ntp": {
         "enabled": true,
