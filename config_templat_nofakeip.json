@@ -13,11 +13,18 @@
                 "detour": "🚀 NODE SELECTION"
             },
             {
-                "tag": "dns_proxy_domestic",
+                "tag": "dns_proxy_jp",
                 "address": "tls://8.8.8.8",
                 "address_resolver": "dns_resolver",
                 "strategy": "ipv4_only",
                 "detour": "🌸 JP"
+            },
+            {
+                "tag": "dns_proxy_sg",
+                "address": "tls://8.8.8.8",
+                "address_resolver": "dns_resolver",
+                "strategy": "ipv4_only",
+                "detour": "🦁 SG"
             },
             {
                 "tag": "dns_direct",
@@ -34,8 +41,10 @@
         ],
         "rules": [
             {
-                "outbound": "any",
-                "server": "dns_resolver"
+                "rule_set": [
+                    "geosite-netflix"
+                ],
+                "server": "dns_proxy_sg"
             },
             {
                 "rule_set": "geosite-geolocation-!cn",
@@ -50,7 +59,11 @@
                 "domain_keyword": [
                     "kuromis"
                 ],
-                "server": "dns_proxy_domestic"
+                "server": "dns_proxy_jp"
+            },
+            {
+                "outbound": "any",
+                "server": "dns_direct"
             },
             {
                 "query_type": [
