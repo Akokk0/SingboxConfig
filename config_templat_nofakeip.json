@@ -21,7 +21,7 @@
             },
             {
                 "tag": "dns_direct",
-                "address": "h3://dns.alidns.com/dns-query",
+                "address": "119.29.29.29",
                 "address_resolver": "dns_resolver",
                 "strategy": "ipv4_only",
                 "detour": "☄️ DIRECT"
