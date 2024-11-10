@@ -38,10 +38,6 @@
         ],
         "rules": [
             {
-                "outbound": "any",
-                "server": "dns_resolver"
-            },
-            {
                 "rule_set": [
                     "geosite-geolocation-!cn",
                     "geosite-bilibili",
@@ -77,6 +73,10 @@
                     "CNAME"
                 ],
                 "server": "dns_proxy_domestic"
+            },
+            {
+                "outbound": "any",
+                "server": "dns_direct"
             },
             {
                 "query_type": [
