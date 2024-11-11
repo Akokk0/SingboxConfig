@@ -21,7 +21,7 @@
             },
             {
                 "tag": "dns_direct",
-                "address": "119.29.29.29",
+                "address": "https://dns.alidns.com/dns-query",
                 "address_resolver": "dns_resolver",
                 "strategy": "ipv4_only",
                 "detour": "☄️ DIRECT"
@@ -30,6 +30,14 @@
                 "tag": "dns_resolver",
                 "address": "223.5.5.5",
                 "detour": "☄️ DIRECT"
+            },
+            {
+                "tag": "dns_success",
+                "address": "rcode://success"
+            },
+            {
+                "tag": "dns_refused",
+                "address": "rcode://refused"
             },
             {
                 "tag": "dns_fakeip",
@@ -85,8 +93,9 @@
                     "CNAME"
                 ],
                 "invert": true,
-                "disable_cache": true,
-                "action": "reject"
+                "server": "dns_refused",
+                "action": "route-options",
+                "disable_cache": true
             }
         ],
         "final": "dns_direct",
@@ -298,8 +307,7 @@
         "rules": [
             {
                 "inbound": "tun-in",
-                "action": "sniff",
-                "timeout": "1s"
+                "action": "sniff"
             },
             {
                 "type": "logical",
@@ -435,7 +443,7 @@
             "mtu": 1492,
             "auto_route": true,
             "strict_route": true,
-            "stack": "mixed"
+            "stack": "system"
         }
     ],
     "outbounds": [
