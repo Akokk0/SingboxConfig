@@ -13,20 +13,6 @@
                 "detour": "🚀 NODE SELECTION"
             },
             {
-                "tag": "dns_proxy_jp",
-                "address": "tls://8.8.8.8",
-                "address_resolver": "dns_resolver",
-                "strategy": "ipv4_only",
-                "detour": "🌸 JP"
-            },
-            {
-                "tag": "dns_proxy_sg",
-                "address": "tls://8.8.8.8",
-                "address_resolver": "dns_resolver",
-                "strategy": "ipv4_only",
-                "detour": "🦁 SG"
-            },
-            {
                 "tag": "dns_direct",
                 "address": "https://dns.alidns.com/dns-query",
                 "address_resolver": "dns_resolver",
@@ -37,6 +23,18 @@
                 "tag": "dns_resolver",
                 "address": "223.5.5.5",
                 "detour": "☄️ DIRECT"
+            },
+            {
+                "tag": "dns_success",
+                "address": "rcode://success"
+            },
+            {
+                "tag": "dns_refused",
+                "address": "rcode://refused"
+            },
+            {
+                "tag": "dns_fakeip",
+                "address": "fakeip"
             }
         ],
         "rules": [
@@ -44,14 +42,15 @@
                 "rule_set": [
                     "geosite-netflix"
                 ],
-                "server": "dns_proxy_sg"
-            },
-            {
-                "rule_set": "geosite-geolocation-!cn",
-                "server": "dns_proxy"
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "dns_fakeip"
             },
             {
                 "rule_set": [
+                    "geosite-geolocation-!cn",
                     "geosite-bilibili",
                     "geosite-bilibili2",
                     "geosite-bilibili-game"
@@ -59,7 +58,7 @@
                 "domain_keyword": [
                     "kuromis"
                 ],
-                "server": "dns_proxy_jp"
+                "server": "dns_proxy"
             },
             {
                 "outbound": "any",
@@ -78,7 +77,11 @@
             }
         ],
         "final": "dns_direct",
-        "independent_cache": true
+        "independent_cache": true,
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15"
+        }
     },
     "ntp": {
         "enabled": true,
@@ -876,7 +879,7 @@
             "external_controller": "0.0.0.0:9090",
             "external_ui": "ui",
             "secret": "",
-            "external_ui_download_url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
+            "external_ui_download_url": "https://mirror.ghproxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
             "external_ui_download_detour": "☄️ DIRECT",
             "default_mode": "rule"
         }
